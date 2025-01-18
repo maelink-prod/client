@@ -1,11 +1,35 @@
 const wsUrl = 'wss://maelink-ws.derpygamer2142.com';
+import { hashPassword, comparePasswords } from './bcrypt.js';
+
+// Cookie helper functions
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "; expires=" + date.toUTCString();
+    document.cookie = name + "=" + (value || "") + expires + "; path=/; Secure; SameSite=Strict";
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
 const httpUrl = 'https://maelink-http.derpygamer2142.com';
 let ws;
 let postsLoaded = 0;
 var animationComplete = false;
 document.addEventListener('DOMContentLoaded', () => {
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
+    const storedUsername = getCookie('username');
+    const storedPassword = getCookie('hashedPassword');
     if (storedUsername && storedPassword) {
         login(storedUsername, storedPassword);
     }
@@ -22,7 +46,8 @@ document.getElementById('loginModal').addEventListener('click', () => {
     }
 });
 
-function login(username, password) {
+async function login(username, password) {
+    const hashedPassword = await hashPassword(password);
     fetch(`${httpUrl}/login`, {
         method: 'POST',
         headers: {
@@ -33,9 +58,9 @@ function login(username, password) {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                localStorage.setItem('username', username);
-                localStorage.setItem('password', password);
-                localStorage.setItem('token', data.token);
+                setCookie('username', username, 7);
+                setCookie('hashedPassword', hashedPassword, 7);
+                setCookie('token', data.token, 7);
                 hideModal('loginModal');
                 document.getElementById('messages').style.display = 'block';
                 document.getElementById('input').style.display = 'flex';
@@ -127,7 +152,7 @@ function createPostElement(post) {
 function sendMessage() {
     const input = document.getElementById('messageInput');
     const message = input.value;
-    const token = localStorage.getItem('token');
+    const token = getCookie('token');
 
     if (message == "") {
         showToast('Message cannot be empty');

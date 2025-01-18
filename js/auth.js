@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Show login modal on page load if not logged in
-    const user = localStorage.getItem('username');
+    const user = getCookie('username');
     if (!user) {
         showModal('loginModal');
     } else {
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logoutButton');
     logoutButton.addEventListener('click', () => {
         // Clear the authentication token
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
-        localStorage.removeItem('password');
+        eraseCookie('token');
+        eraseCookie('username');
+        eraseCookie('hashedPassword');
         // Close the WebSocket connection
         if (ws) {
             ws.close();
