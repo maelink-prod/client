@@ -179,6 +179,10 @@ body {
     margin-left: 0px;
 }
 
+#loadMoreButton {
+    font-family: "Kanit", sans-serif;
+}
+
 #sendButton {
     padding: 10px 20px;
     border: 1px solid #ff5b5b;

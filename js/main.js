@@ -1,6 +1,7 @@
 const wsUrl = 'wss://maelink-ws.derpygamer2142.com';
 const httpUrl = 'https://maelink-http.derpygamer2142.com';
 let ws;
+let postsLoaded = 0;
 var animationComplete = false;
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username');
@@ -61,6 +62,7 @@ function connectWebSocket() {
     ws = new WebSocket(wsUrl);
     ws.onopen = () => {
         console.log('Connected to the WebSocket server');
+        document.getElementById('loadMoreButton').style.display = 'block';
         ws.send(JSON.stringify({ cmd: 'fetch', offset: 0 }));
     };
 
@@ -69,11 +71,16 @@ function connectWebSocket() {
         const messagesContainer = document.getElementById('messages');
 
         if (message.cmd === 'fetch') {
-            message.posts.forEach(post => {
-                const postElement = createPostElement(post);
-                messagesContainer.appendChild(postElement);
-                showToast("Connected to server!")
-            });
+            if (message.posts.length === 0) {
+                showToast("No more posts to load!")
+            } else {
+                message.posts.forEach(post => {
+                    const postElement = createPostElement(post);
+                    messagesContainer.appendChild(postElement);
+                    postsLoaded++;
+                });
+                showToast(postsLoaded === 10 ? "Connected to server!" : "Posts loaded successfully!")
+            }
         } else if (message.cmd === 'post_home') {
             const postElement = createPostElement(message.post);
             messagesContainer.insertBefore(postElement, messagesContainer.firstChild);
@@ -81,8 +88,10 @@ function connectWebSocket() {
             const messageElement = document.createElement('div');
             messageElement.innerText = `Received: ${message.cmd} - ${JSON.stringify(message)}`;
             messagesContainer.appendChild(messageElement);
-        }
+        
+    }
     };
+
 
     ws.onclose = () => {
         console.log('Disconnected from the WebSocket server');
@@ -93,6 +102,9 @@ function connectWebSocket() {
     };
 
     document.getElementById('sendButton').addEventListener('click', sendMessage);
+    document.getElementById('loadMoreButton').addEventListener('click', () => {
+        ws.send(JSON.stringify({ cmd: 'fetch', offset: postsLoaded }));
+    });
 }
 
 function createPostElement(post) {
