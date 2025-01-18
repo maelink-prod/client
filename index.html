@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/toast.css">
     <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/settings.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
@@ -62,17 +63,32 @@
     <!-- Toast Container -->
     <div id="toast" class="toast"></div>
 
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Settings</h2>
-                <span class="close-button">&times;</span>
+    <div id="settingsScreen" class="screen" style="display: none;">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button id="closeSettings">&times;</button>
             </div>
-            <div class="modal-body">
-                <h3>About</h3>
-                <p>maelink - A simple messaging application</p>
-                <p>Version: alpha 1 - 17-01-25</p>
-                <p>Created with ❤️</p>
+            <div class="settings-nav">
+                <div class="settings-nav-item active" data-section="about">About</div>
+                <div class="settings-nav-item" data-section="profile">Profile</div>
+                <div class="settings-nav-item" data-section="preferences">Preferences</div>
+            </div>
+            <div class="settings-content">
+                <div id="aboutSection" class="settings-section active">
+                    <h3>About</h3>
+                    <p>maelink - The privacy-centric, fun-loving community</p>
+                    <p>Version: alpha 1 - 17-01-25</p>
+                    <p>Made with ❤️ by maelink communications</p>
+                </div>
+                <div id="profileSection" class="settings-section">
+                    <h3>Profile Settings</h3>
+                </div>
+                <div id="preferencesSection" class="settings-section">
+                    <h3>Preferences</h3>
+                    <div class="settings-form">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
