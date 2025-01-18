@@ -7,6 +7,7 @@
     <title>maelink</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/input.css">
     <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/settings.css">
@@ -36,7 +37,7 @@
         <div id="welcome-message-2"></div>
         <div id="input" style="display:none;">
             <div id="messageContainer">
-                <input type="text" id="messageInput" placeholder="Go on, send something!">
+                <textarea id="messageInput" placeholder="Go on, send something! (Press Enter to send, Shift+Enter for new line)" rows="1"></textarea>
                 <button id="sendButton">Send</button>
             </div>
         </div>
@@ -96,7 +97,15 @@
     <script src="js/toast.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/settings.js"></script>
+    <script src="js/input-handler.js"></script>
     <script src="js/main.js"></script>
+    <script nonce="random_nonce">
+        // Add Content Security Policy
+        const meta = document.createElement('meta');
+        meta.httpEquiv = "Content-Security-Policy";
+        meta.content = "default-src 'self' https: wss:; script-src 'self' 'nonce-random_nonce' https://unpkg.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' wss: https:;";
+        document.head.appendChild(meta);
+    </script>
 </body>
 
 </html>

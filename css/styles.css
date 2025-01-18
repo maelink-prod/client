@@ -150,14 +150,18 @@ body {
 }
 
 #messageInput {
-    flex: 2; /* Allow the input to take up remaining space */
-    padding: 10px;
-    border: 1px solid #ff5b5b;
-    border-radius: 12px 0 0 12px; /* Rounded corners on the left */
-    background-color: #2b2b2b;
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #515151;
+    border-radius: 4px;
+    background: #2a2a2a;
     color: #ffffff;
-    font-family: "Kanit", sans-serif;
-    margin-right: -5px; /* Remove right margin */
+    font-family: inherit;
+    line-height: 1.4;
+    resize: none;
+    overflow-y: hidden;
+    min-height: 36px;
+    max-height: 150px;
 }
 
 #welcome-message {
@@ -184,14 +188,14 @@ body {
 }
 
 #sendButton {
-    padding: 10px 20px;
-    border: 1px solid #ff5b5b;
-    border-radius: 0 12px 12px 0; /* Rounded corners on the right */
-    background-color: #ff5b5b;
-    color: #ffffff;
-    font-family: "Kanit", sans-serif;
+    padding: 0 16px;
+    border: 1px solid #515151;
+    border-radius: 4px;
+    background: #2a2a2a;
+    color: #b05a5a;
     cursor: pointer;
-    flex-shrink: 0; /* Prevent the button from shrinking */
+    transition: background-color 0.2s;
+    min-height: 36px;
 }
 
 #sendButton:hover {
@@ -200,6 +204,10 @@ body {
 
 #sendButton:hover {
     background-color: #ff9f9f;
+}
+
+#sendButton:active {
+    background: #444444;
 }
 
 
