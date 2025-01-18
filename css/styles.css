@@ -1,0 +1,278 @@
+body {
+    font-family: "Kanit", sans-serif;
+    background-color: #1d1d1d;
+    margin: 0;
+    padding: 20px;
+    padding-top: 80px; /* Add padding to the top to account for the fixed top bar */
+}
+
+.post {
+    background: #2b2b2b;
+    border: 2.5px solid #616161;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 10px 0; /* Add margin to separate posts */
+    display: flex;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    margin-right: 10px;
+    margin-left: -5px;
+}
+
+.post-content {
+    flex: 2;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: column; /* Arrange username and timestamp in a column */
+}
+
+.post-username {
+    font: lighter, italic;
+    font-style: italic;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+
+.post-timestamp {
+    color: #999;
+    font-size: 0.9em;
+    margin-top: -5px; /* Add space between username and timestamp */
+}
+
+.post-text {
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+#input {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px; /* Add margin to the top to create space between the top bar and the input */
+}
+
+#status {
+    color: #7e7e7e;
+    left: 75%;
+    top: 25%;
+    margin: auto;
+    position: absolute;
+    transform: transformX(-75%);
+}
+
+#topbar {
+    display: flex;
+    align-items: center; /* Center child elements vertically */
+    justify-content: space-between;
+    background-color: #2b2b2b;
+    border-bottom: 2.5px solid #4e4e4e;
+    padding: 1px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+#logo {
+    width: 125px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+#clientVer {
+    color: #ffffff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#messageContainer {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
+}
+
+#currentUsername {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+#messages {
+    padding: 0;
+    margin-bottom: 20px;
+    background: none;
+}
+
+#login, #register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#login input, #register input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #4e4e4e;
+    border-radius: 4px;
+    background-color: #2b2b2b;
+    color: #282828;
+    font-family: "Kanit", sans-serif;
+}
+
+#login button, #register button {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff5b5b;
+    color: #ffffff;
+    font-family: "Kanit", sans-serif;
+    cursor: pointer;
+}
+
+#login button:hover, #register button:hover {
+    background-color: #ff9f9f;
+}
+
+#messageInput {
+    flex: 2; /* Allow the input to take up remaining space */
+    padding: 10px;
+    border: 1px solid #ff5b5b;
+    border-radius: 12px 0 0 12px; /* Rounded corners on the left */
+    background-color: #2b2b2b;
+    color: #ffffff;
+    font-family: "Kanit", sans-serif;
+    margin-right: -5px; /* Remove right margin */
+}
+
+#welcome-message {
+    font-size: 1.5em; /* Adjust the size as needed */
+    color: #ff5656;
+    font-style: italic;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
+#welcome-message-2 {
+    font-size: 0.5m; /* Adjust the size as needed */
+    color: #ff5656;
+    font-style: italic;
+    font-weight: lighter;
+    text-align: left;
+    margin-top: 2.5px;
+    margin-left: 0px;
+}
+
+#sendButton {
+    padding: 10px 20px;
+    border: 1px solid #ff5b5b;
+    border-radius: 0 12px 12px 0; /* Rounded corners on the right */
+    background-color: #ff5b5b;
+    color: #ffffff;
+    font-family: "Kanit", sans-serif;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+#sendButton:hover {
+    background-color: #ff9f9f;
+}
+
+#sendButton:hover {
+    background-color: #ff9f9f;
+}
+
+small {
+    color: #ccc;
+    font-size: 0.8em;
+    margin: 0; /* Remove all margins */
+    padding: 0; /* Remove all padding */
+    margin-bottom: -5px; /* Add a small margin to separate from #currentUsername */
+}
+
+#userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(43, 43, 43, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    z-index: 2000;
+    transition: opacity 0.5s ease-out;
+}
+
+#loading-logo {
+    width: 250px;
+    height: 250px;
+    opacity: 0;
+    animation: logoTweenIn 0.5s ease-out forwards;
+}
+
+@keyframes logoTweenIn {
+    from {
+        opacity: 0;
+        transform: translateY(1000px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes logoTweenOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    animation: logoTweenOut 0.5s ease-in forwards;
+}
+
+@keyframes screenOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

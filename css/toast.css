@@ -1,0 +1,129 @@
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: none;
+    z-index: 1000;
+    animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-username {
+    width: 100%;
+    font-family: "Kanit", sans-serif;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #4f4f4f;
+    color: #2c2c2c;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.modal-password {
+    width: 100%;
+    font-family: "Kanit", sans-serif;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #4f4f4f;
+    color: #2c2c2c;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #363636;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #555555;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.modal-content input {
+    width: 100%;
+    font-family: "Kanit", sans-serif;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #929292;
+    background-color: #444444;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff7272;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #ff9c9c;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.close-button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.close-button:hover {
+    color: #555;
+}

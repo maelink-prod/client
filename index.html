@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>maelink</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <div id="loading-screen">
+            <img id="loading-logo" src="assets/logo.svg" alt="Logo">
+        </div>
+        <div id="topbar">
+            <img src="assets/logo.svg" alt="Logo" id="logo">
+            <span id="clientVer">alpha 1 - 17-01-25</span>
+            <div id="userInfo" class="dropdown">
+                <img src="assets/user.svg" alt="User" id="userIcon">
+                <div class="dropdown-content">
+                    <div class="dropdown-item" id="settingsButton">
+                        <img src="assets/settings.svg" alt="Settings">
+                        <span>Settings</span>
+                    </div>
+                    <div class="dropdown-item" id="logoutButton">
+                        <img src="assets/logout.svg" alt="Logout">
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="welcome-message"></div>
+        <div id="welcome-message-2"></div>
+        <div id="input" style="display:none;">
+            <div id="messageContainer">
+                <input type="text" id="messageInput" placeholder="Go on, send something!">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+        <div id="messages" style="display:none;"></div>
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Login</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            <div id="loginForm">
+                <input type="text" id="modal-username" placeholder="Username">
+                <input type="password" id="modal-password" placeholder="Password">
+                <div>
+                    <button id="modal-loginButton">Login</button>
+                    <button id="modal-registerButton">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast"></div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Settings</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>About</h3>
+                <p>maelink - A simple messaging application</p>
+                <p>Version: alpha 1 - 17-01-25</p>
+                <p>Created with ❤️</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="js/toast.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
