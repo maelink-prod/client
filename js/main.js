@@ -88,8 +88,7 @@ function connectWebSocket() {
             const messageElement = document.createElement('div');
             messageElement.innerText = `Received: ${message.cmd} - ${JSON.stringify(message)}`;
             messagesContainer.appendChild(messageElement);
-        
-    }
+        }
     };
 
 
