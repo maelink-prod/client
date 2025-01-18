@@ -3,19 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const user = localStorage.getItem('username');
     if (!user) {
         showModal('loginModal');
-        loadingScreen = document.getElementById('loading-screen');
-        function hideLoadingScreen() {
-            loadingScreen.classList.add('hidden');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 1000);
-        }
-            setTimeout(() => {
-            animationComplete = true;
-            if (animationComplete) {
-                hideLoadingScreen();
-            }
-        }, 500);
+    } else {
+        showToast("Connecting to server...")
     }
 
     // Handle login form submission
@@ -51,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loginButton.addEventListener('click', () => {
         const username = loginForm.querySelector('#modal-username').value;
         const password = loginForm.querySelector('#modal-password').value;
+        showToast("Logging in...")
         login(username, password);
     });
 

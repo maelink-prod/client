@@ -5,8 +5,6 @@ var animationComplete = false;
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username');
     const storedPassword = localStorage.getItem('password');
-    const clientVer = "alpha 1 - 17-01-25"
-    document.getElementById('clientVer').innerText = clientVer;
     if (storedUsername && storedPassword) {
         login(storedUsername, storedPassword);
     }
@@ -74,6 +72,7 @@ function connectWebSocket() {
             message.posts.forEach(post => {
                 const postElement = createPostElement(post);
                 messagesContainer.appendChild(postElement);
+                showToast("Connected to server!")
             });
         } else if (message.cmd === 'post_home') {
             const postElement = createPostElement(message.post);
