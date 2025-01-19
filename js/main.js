@@ -100,14 +100,21 @@ function connectWebSocket() {
         console.error('WebSocket error:', error);
     };
 
-    document.getElementById('sendButton').addEventListener('click', sendMessage);
+    document.getElementById('sendButton').addEventListener('click', () => {
+        const input = document.getElementById('messageInput');
+        if (input.value.trim()) {
+            sendMessage();
+        }
+    });
     document.getElementById('loadMoreButton').addEventListener('click', () => {
         ws.send(JSON.stringify({ cmd: 'fetch', offset: postsLoaded }));
     });
     document.getElementById('messageInput').addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            sendMessage();
+            if (this.value.trim()) {
+                sendMessage();
+            }
         }
     });
     document.getElementById('messageInput').addEventListener('input', function() {
@@ -142,17 +149,24 @@ function createPostElement(post) {
 
 function sendMessage() {
     const input = document.getElementById('messageInput');
-    const message = input.value;
+    const message = input.value.trim(); // Trim the message here
     const token = localStorage.getItem('token');
 
-    if (message == "") {
-        showToast('Message cannot be empty');
-    } else {
-        if (message && token) {
-            ws.send(JSON.stringify({ cmd: 'post', p: message, token }));
-            input.value = '';
-        } else {
-            showToast('You must be logged in to send messages');
-        }
+    console.log('Message before trim:', input.value, 'Length:', input.value.length);
+    console.log('Message after trim:', message, 'Length:', message.length);
+
+    if (!token) {
+        showToast('You must be logged in to send messages');
+        return;
     }
+
+    if (!message) {
+        showToast('Message cannot be empty');
+        return;
+    }
+
+    console.log('Sending message:', message);
+    ws.send(JSON.stringify({ cmd: 'post', p: message, token }));
+    input.value = '';
+    input.style.height = 'auto';
 }
