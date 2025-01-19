@@ -203,6 +203,7 @@ body {
 
 #loadMoreButton {
     font-family: "Kanit", sans-serif;
+    cursor: pointer;
 }
 
 #sendButton:hover {
