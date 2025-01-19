@@ -199,7 +199,7 @@ function sendMessage() {
     const replyPill = document.querySelector('.reply-pill');
     let replyTo = null;
 
-    if (replyPill) {
+    if (replyPill && replyPill.children.length > 0) {
         replyTo = replyPill.querySelector('.reply-id').innerText;
         replyPill.remove();
     }
