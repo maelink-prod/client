@@ -11,17 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.getElementById('loginModal').addEventListener('click', () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    if (username && password) {
-        login(username, password);
-    } else {
-        showModal('Please enter both username and password');
-    }
-});
-
 function login(username, password) {
     fetch(`${httpUrl}/login`, {
         method: 'POST',
