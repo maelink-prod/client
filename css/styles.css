@@ -35,16 +35,21 @@ body {
 }
 
 .post-username {
-    font: lighter, italic;
+    font: lighter;
     font-style: italic;
     color: #ffffff;
     font-size: 1.5em;
+    margin-right: 10px;
 }
 
 .post-timestamp {
     color: #999;
     font-size: 0.9em;
     margin-top: -5px; /* Add space between username and timestamp */
+}
+
+.id {
+    display: none;
 }
 
 .post-text {
@@ -96,8 +101,9 @@ body {
 
 #messageContainer {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 100%; /* Ensure the container takes full width */
+    margin-bottom: 10px; /* Add margin to separate from other elements */
 }
 
 #currentUsername {
@@ -218,7 +224,6 @@ body {
     background: #444444;
 }
 
-
 small {
     color: #ccc;
     font-size: 0.8em;
@@ -288,6 +293,44 @@ small {
         opacity: 0;
     }
 }
+
+.reply-pill {
+    display: flex;
+    flex-direction: row;
+    background-color: darkred;
+    border: 1px solid red;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+    font-style: italic;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.reply-username {
+    font-weight: bold;
+    font-style: italic;
+    margin-right: 5px;
+}
+
+.reply-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px; /* Add margin to separate from username */
+}
+
+.reply-content {
+    font-weight: lighter;
+    margin-right: 5px;
+}
+
+.reply-id {
+    font-weight: lighter;
+    opacity: 50%;
+    font-size: smaller;
+}
+
 
 @keyframes screenIn {
     from {

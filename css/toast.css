@@ -97,6 +97,7 @@
     background-color: #ff7272;
     color: white;
     cursor: pointer;
+    font-family: "Kanit", sans-serif;
 }
 
 .modal-content button:hover {

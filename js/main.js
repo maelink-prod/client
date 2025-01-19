@@ -43,10 +43,10 @@ function login(username, password) {
                 document.getElementById('userInfo').style.display = 'flex';
                 var welcomeMessageElement = document.getElementById('welcome-message');
                 var welcomeMessage2Element = document.getElementById('welcome-message-2');
-        if (welcomeMessageElement) {
-            welcomeMessageElement.innerText = `Hello, ${username}!`;
-            welcomeMessage2Element.innerText = `What will you post today?`;
-        }
+                if (welcomeMessageElement) {
+                    welcomeMessageElement.innerText = `Hello, ${username}!`;
+                    welcomeMessage2Element.innerText = `What will you post today?`;
+                }
                 connectWebSocket();
             } else {
                 showToast('Login failed: ' + data.message);
@@ -91,7 +91,6 @@ function connectWebSocket() {
         }
     };
 
-
     ws.onclose = () => {
         console.log('Disconnected from the WebSocket server');
     };
@@ -109,7 +108,7 @@ function connectWebSocket() {
     document.getElementById('loadMoreButton').addEventListener('click', () => {
         ws.send(JSON.stringify({ cmd: 'fetch', offset: postsLoaded }));
     });
-    document.getElementById('messageInput').addEventListener('keydown', function(e) {
+    document.getElementById('messageInput').addEventListener('keydown', function (e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             if (this.value.trim()) {
@@ -117,43 +116,104 @@ function connectWebSocket() {
             }
         }
     });
-    document.getElementById('messageInput').addEventListener('input', function() {
+    document.getElementById('messageInput').addEventListener('input', function () {
         this.style.height = 'auto';
         const newHeight = Math.min(this.scrollHeight, 150);
         this.style.height = newHeight + 'px';
         const sendButton = document.getElementById('sendButton');
         sendButton.style.height = newHeight + 'px';
-    });    
+    });
+}
+
+function fetchIndividualPost(postReply, callback) {
+    const tempWs = new WebSocket(wsUrl);
+    tempWs.onopen = () => {
+        tempWs.send(JSON.stringify({ cmd: 'fetchInd', id: postReply }));
+    };
+
+    tempWs.onmessage = (event) => {
+        const response = JSON.parse(event.data);
+        if (response.cmd === 'fetchInd') {
+            callback(response.post[0]);
+            tempWs.close();
+        }
+    };
+
+    tempWs.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        tempWs.close();
+    };
 }
 
 function createPostElement(post) {
     const postElement = document.createElement('div');
     postElement.classList.add('post');
+    console.log(post)
     const postData = JSON.parse(post.e);
     const timestamp = new Date(postData.t);
     const formattedText = post.p.replace(/\n/g, '<br>');
-    
+    const postId = post._id;
+    const postReply = post.reply_to;
+
+    // Initial post content without reply-pill
     postElement.innerHTML = `
         <div class="avatar"></div>
         <div class="post-content">
-            <div class="post-header">
-                <span class="post-username">${post.u}</span>
+            <div class="post-header" style="position: relative;">
+                <div class="header-left" style="display: flex; flex-direction: row;">
+                    <span class="post-username">${post.u}</span>
+                    <div class="reply-container"></div>
+                </div>
                 <span class="post-timestamp">${timestamp.toLocaleString()}</span>
+                <img src="assets/reply.svg" class="reply-button" style="position: absolute; top: 0; right: 0; width: 24px; height: 24px; cursor: pointer;" onclick="handleReplyClick('${postId}', '${formattedText}', '${post.u}')" />
             </div>
             <div class="post-text">${formattedText}</div>
+            <div class="id">${postId}</div>
         </div>
     `;
+
+    // Fetch and add reply-pill if postReply exists
+    if (postReply) {
+        fetchIndividualPost(postReply, (replyPost) => {
+            const replyPill = document.createElement('div');
+            replyPill.classList.add('reply-pill');
+            replyPill.innerHTML = `
+                <span class="reply-username">${replyPost.u}</span>
+                <span class="reply-content">${replyPost.p}</span>
+                <span class="reply-id" style="margin-top: 3px;">${replyPost._id}</span>
+            `;
+            const replyContainer = postElement.querySelector('.reply-container');
+            replyContainer.appendChild(replyPill);
+        });
+    }
+
     return postElement;
 }
 
+function handleReplyClick(postId, content, username) {
+    const replyPill = document.createElement('div');
+    replyPill.classList.add('reply-pill');
+    replyPill.innerHTML = `
+        <span class="reply-username">${username}</span>
+        <span class="reply-content">${content}</span>
+        <span class="reply-id">${postId}</span>
+    `;
+    const messageContainer = document.getElementById('messageContainer');
+    messageContainer.insertBefore(replyPill, messageContainer.firstChild);
+    console.log(`Reply to post ID: ${postId}, Username: ${username}`);
+}
 
 function sendMessage() {
     const input = document.getElementById('messageInput');
-    const message = input.value.trim(); // Trim the message here
+    const message = input.value.trim();
     const token = localStorage.getItem('token');
+    const replyPill = document.querySelector('.reply-pill');
+    let replyTo = null;
 
-    console.log('Message before trim:', input.value, 'Length:', input.value.length);
-    console.log('Message after trim:', message, 'Length:', message.length);
+    if (replyPill) {
+        replyTo = replyPill.querySelector('.reply-id').innerText;
+        replyPill.remove();
+    }
 
     if (!token) {
         showToast('You must be logged in to send messages');
@@ -165,8 +225,7 @@ function sendMessage() {
         return;
     }
 
-    console.log('Sending message:', message);
-    ws.send(JSON.stringify({ cmd: 'post', p: message, token }));
+    ws.send(JSON.stringify({ cmd: 'post', p: message, token, reply_to: replyTo }));
     input.value = '';
     input.style.height = 'auto';
 }
