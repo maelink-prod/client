@@ -10,11 +10,11 @@
 
 .settings-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    height: 100%;
+    margin: 0;
+    padding: 0px;
+    height: 60%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .settings-header {
@@ -26,33 +26,44 @@
 
 .settings-header h2 {
     font-size: 24px;
-    margin: 0;
+    margin-left: 20px;
+    color: #ffffff
 }
 
 #closeSettings {
     background: none;
     border: none;
+    margin-right: 20px;
     font-size: 24px;
     color: #ffffff;
     cursor: pointer;
 }
 
 .settings-nav {
-    display: flex;
-    gap: 20px;
+    display: block;
+    width: 375px;
+    margin-top: -25px;
+    height: 1000%;
+    padding: 0px;
+    gap: 0px;
+    background-color: #2a2a2a;
     margin-bottom: 30px;
-    border-bottom: 1px solid #4b4b4b;
+    border-radius: 12px;
+    border: 1px solid #4b4b4b;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
 }
 
 .settings-nav-item {
-    padding: 10px 20px;
+    padding: 20px 20px;
     cursor: pointer;
     color: #888;
 }
 
 .settings-nav-item.active {
     color: #ffffff;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #ff6c6c;
 }
 
 .settings-content {
@@ -62,7 +73,7 @@
 
 .settings-section {
     display: none;
-    padding: 20px;
+    padding: 0px;
 }
 
 .settings-section.active {
@@ -85,10 +96,15 @@
 
 h3 {
     color: #ffffff;
+    font-weight: lighter;
+    font-style: italic;
+    margin-top: -5px;
+    margin-left: 15px;
 }
 
 p {
     color: #ffffff;
+    margin-left: 15px;
 }
 
 .settings-form input[type="checkbox"] {

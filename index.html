@@ -19,7 +19,9 @@
         <div id="topbar">
             <img src="assets/logo.svg" alt="Logo" id="logo">
             <div id="userInfo" class="dropdown">
-                <div id="userIcon" style="width: 24px; height: 24px; margin-right: 10px; background-color: #ffc0c0; border-radius: 50%;"></div>
+                <div id="userIcon"
+                    style="width: 24px; height: 24px; margin-right: 10px; background-color: #ffc0c0; border-radius: 50%;">
+                </div>
                 <div class="dropdown-content">
                     <div class="dropdown-item" id="settingsButton">
                         <img src="assets/settings.svg" alt="Settings">
@@ -32,67 +34,72 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="welcome-message"></div>
         <div id="welcome-message-2"></div>
         <div id="input" style="display:none;">
             <div id="messageContainer">
-                <textarea id="messageInput" placeholder="Go on, send something! (Press Enter to send, Shift+Enter for new line)" rows="1"></textarea>
+                <textarea id="messageInput"
+                    placeholder="Go on, send something! (Press Enter to send, Shift+Enter for new line)"
+                    rows="1"></textarea>
                 <button id="sendButton">Send</button>
             </div>
         </div>
-        <div id="messages" style="display:none;"></div>
-        <button id="loadMoreButton" style="display: none; border-color: #515151; background-color: #1c1c1c; color: #ffffff; border-radius: 5px; border-style: solid">Load More</button>
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Login</h2>
-                <span class="close-button">&times;</span>
-            </div>
-            <div id="loginForm">
-                <input type="text" id="modal-username" placeholder="Username">
-                <input type="password" id="modal-password" placeholder="Password">
-                <div>
-                    <button id="modal-loginButton">Login</button>
-                    <button id="modal-registerButton">Register</button>
-                </div>
-            </div>
+        <div id="msgContainer2">
+            <div id="messages" style="display:none;"></div>
+            <button id="loadMoreButton"
+                style="display: none; width: 100%; height: 50px; border-color: #515151; background-color: #1c1c1c; color: #ffffff; border-radius: 12px; border-style: solid">Load More</button>
         </div>
-    </div>
-
-    <!-- Toast Container -->
-    <div id="toast" class="toast"></div>
-
-    <div id="settingsScreen" class="screen" style="display: none;">
-        <div class="settings-container">
-            <div class="settings-header">
-                <h2>Settings</h2>
-                <button id="closeSettings">&times;</button>
-            </div>
-            <div class="settings-nav">
-                <div class="settings-nav-item active" data-section="about">About</div>
-                <div class="settings-nav-item" data-section="profile">Profile</div>
-                <div class="settings-nav-item" data-section="preferences">Preferences</div>
-            </div>
-            <div class="settings-content">
-                <div id="aboutSection" class="settings-section active">
-                    <h3>About</h3>
-                    <p>maelink - The privacy-centric, fun-loving community</p>
-                    <p>Version: alpha 1 - 17-01-25</p>
-                    <p>Made with ❤️ by maelink communications</p>
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Login</h2>
+                    <span class="close-button">&times;</span>
                 </div>
-                <div id="profileSection" class="settings-section">
-                    <h3>Profile Settings</h3>
-                </div>
-                <div id="preferencesSection" class="settings-section">
-                    <h3>Preferences</h3>
-                    <div class="settings-form">
+                <div id="loginForm">
+                    <input type="text" id="modal-username" placeholder="Username">
+                    <input type="password" id="modal-password" placeholder="Password">
+                    <div>
+                        <button id="modal-loginButton">Login</button>
+                        <button id="modal-registerButton">Register</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Toast Container -->
+        <div id="toast" class="toast"></div>
+
+        <div id="settingsScreen" class="screen" style="display: none;">
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button id="closeSettings">&times;</button>
+            </div>
+            <div class="settings-container">
+                <div class="settings-nav">
+                    <div class="settings-nav-item active" data-section="about">About</div>
+                    <div class="settings-nav-item" data-section="profile">Profile</div>
+                    <div class="settings-nav-item" data-section="preferences">Preferences</div>
+                </div>
+                <div class="settings-content">
+                    <div id="aboutSection" class="settings-section active">
+                        <h3>About</h3>
+                        <p>maelink - The privacy-centric, fun-loving community</p>
+                        <p>Version: alpha 1 - 17-01-25</p>
+                        <p>Made with ❤️ by maelink communications</p>
+                    </div>
+                    <div id="profileSection" class="settings-section">
+                        <h3>Profile Settings</h3>
+                    </div>
+                    <div id="preferencesSection" class="settings-section">
+                        <h3>Preferences</h3>
+                        <div class="settings-form">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="js/toast.js"></script>
     <script src="js/auth.js"></script>

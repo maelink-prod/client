@@ -104,6 +104,19 @@ function connectWebSocket() {
     document.getElementById('loadMoreButton').addEventListener('click', () => {
         ws.send(JSON.stringify({ cmd: 'fetch', offset: postsLoaded }));
     });
+    document.getElementById('messageInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+    document.getElementById('messageInput').addEventListener('input', function() {
+        this.style.height = 'auto';
+        const newHeight = Math.min(this.scrollHeight, 150);
+        this.style.height = newHeight + 'px';
+        const sendButton = document.getElementById('sendButton');
+        sendButton.style.height = newHeight + 'px';
+    });    
 }
 
 function createPostElement(post) {
@@ -111,6 +124,8 @@ function createPostElement(post) {
     postElement.classList.add('post');
     const postData = JSON.parse(post.e);
     const timestamp = new Date(postData.t);
+    const formattedText = post.p.replace(/\n/g, '<br>');
+    
     postElement.innerHTML = `
         <div class="avatar"></div>
         <div class="post-content">
@@ -118,11 +133,12 @@ function createPostElement(post) {
                 <span class="post-username">${post.u}</span>
                 <span class="post-timestamp">${timestamp.toLocaleString()}</span>
             </div>
-            <div class="post-text">${post.p}</div>
+            <div class="post-text">${formattedText}</div>
         </div>
     `;
     return postElement;
 }
+
 
 function sendMessage() {
     const input = document.getElementById('messageInput');

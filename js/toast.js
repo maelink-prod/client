@@ -1,16 +1,26 @@
-function showToast(message, duration = 3000) {
-    const toast = document.getElementById('toast');
+let toastTimeout;
+
+function showToast(message) {
+    const toast = document.querySelector('.toast');
+    
+    if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toast.classList.remove('fadeOut');
+        void toast.offsetWidth; // Trigger reflow to restart the animation
+    }
+
     toast.textContent = message;
     toast.style.display = 'block';
-    
-    // Reset animations
-    toast.style.animation = 'none';
-    toast.offsetHeight; // Trigger reflow
-    toast.style.animation = 'slideIn 0.5s, fadeOut 0.5s ' + (duration - 500) + 'ms';
-    
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, duration);
+    toast.classList.add('slideIn');
+
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('slideIn');
+        toast.classList.add('fadeOut');
+        toastTimeout = setTimeout(() => {
+            toast.style.display = 'none';
+            toast.classList.remove('fadeOut');
+        }, 500); // Match the duration of the fadeOut animation
+    }, 1500); // Duration before starting fadeOut
 }
 
 function showModal(modalId) {
