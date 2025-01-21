@@ -1,3 +1,3 @@
-This is the work-in-progress client for maelink, by the maelink team.
+This is a work-in-progress maelink client by the maelink community
 
-Contributions are welcome! Please make an issue or PR if something breaks or you want to contribute.
+***Contributions are welcome!*** Please make an issue or PR if something breaks or you want to contribute.
