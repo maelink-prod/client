@@ -12,6 +12,9 @@ body {
     padding: 20px;
     border-radius: 20px;
     margin: 10px 0; /* Add margin to separate posts */
+}
+
+.post-inner {
     display: flex;
     align-items: flex-start;
 }
@@ -305,6 +308,7 @@ small {
     font-style: italic;
     margin-right: auto;
     margin-bottom: auto;
+    width: 100%;
 }
 
 .reply-username {
@@ -317,7 +321,7 @@ small {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 10px; /* Add margin to separate from username */
+    margin-bottom: 10px; /* Add margin to separate from username */
 }
 
 .reply-content {

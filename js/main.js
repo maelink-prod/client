@@ -146,18 +146,20 @@ function createPostElement(post) {
 
     // Initial post content without reply-pill
     postElement.innerHTML = `
-        <div class="avatar"></div>
-        <div class="post-content">
-            <div class="post-header" style="position: relative;">
-                <div class="header-left" style="display: flex; flex-direction: row;">
-                    <span class="post-username">${post.u}</span>
-                    <div class="reply-container"></div>
+        <div class="reply-container"></div>
+        <div class="post-inner">
+            <div class="avatar"></div>
+            <div class="post-content">
+                <div class="post-header" style="position: relative;">
+                    <div class="header-left" style="display: flex; flex-direction: row;">
+                        <span class="post-username">${post.u}</span>
+                    </div>
+                    <span class="post-timestamp">${timestamp.toLocaleString()}</span>
+                    <img src="assets/reply.svg" class="reply-button" style="position: absolute; top: 0; right: 0; width: 24px; height: 24px; cursor: pointer;" onclick="handleReplyClick('${postId}', '${formattedText}', '${post.u}')" />
                 </div>
-                <span class="post-timestamp">${timestamp.toLocaleString()}</span>
-                <img src="assets/reply.svg" class="reply-button" style="position: absolute; top: 0; right: 0; width: 24px; height: 24px; cursor: pointer;" onclick="handleReplyClick('${postId}', '${formattedText}', '${post.u}')" />
+                <div class="post-text">${formattedText}</div>
+                <div class="id">${postId}</div>
             </div>
-            <div class="post-text">${formattedText}</div>
-            <div class="id">${postId}</div>
         </div>
     `;
 
