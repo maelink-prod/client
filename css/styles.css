@@ -60,6 +60,10 @@ body {
     color: #ffffff;
 }
 
+.post-text p, .reply-pill p {
+    margin: 0;
+}
+
 #input {
     display: flex;
     margin-bottom: 20px;
