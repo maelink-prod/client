@@ -3,6 +3,7 @@ const httpUrl = 'https://maelink-http.derpygamer2142.com';
 let ws;
 let postsLoaded = 0;
 var animationComplete = false;
+const jsString = (s) => JSON.stringify(s).replace(/'/g, "\\x31").replace(/&/g, "\\x26");
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username');
     const storedPassword = localStorage.getItem('password');
@@ -162,7 +163,7 @@ function createPostElement(post) {
                         <span class="post-username">${post.u}</span>
                     </div>
                     <span class="post-timestamp">${timestamp.toLocaleString()}</span>
-                    <img src="assets/reply.svg" class="reply-button" style="position: absolute; top: 0; right: 0; width: 24px; height: 24px; cursor: pointer;" onclick="handleReplyClick('${postId}', '${formattedText}', '${post.u}')" />
+                    <img src="assets/reply.svg" class="reply-button" style="position: absolute; top: 0; right: 0; width: 24px; height: 24px; cursor: pointer;" onclick='handleReplyClick(${jsString(postId)}, ${jsString(formattedText)}, ${jsString(post.u)})' />
                 </div>
                 <div class="post-text">${formattedText}</div>
                 <div class="id">${postId}</div>
