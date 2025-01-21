@@ -177,8 +177,10 @@ function createPostElement(post) {
             const replyPill = document.createElement('div');
             replyPill.classList.add('reply-pill');
             replyPill.innerHTML = `
-                <span class="reply-username">${replyPost.u}</span>
-                <span class="reply-content">${replyPost.p}</span>
+                <div>
+                    <span class="reply-username">${replyPost.u}</span>
+                    <span class="reply-content">${replyPost.p}</span>
+                </div>
                 <span class="reply-id" style="margin-top: 3px;">${replyPost._id}</span>
             `;
             const replyContainer = postElement.querySelector('.reply-container');
@@ -195,8 +197,10 @@ function handleReplyClick(postId, content, username) {
     const replyPill = document.createElement('div');
     replyPill.classList.add('reply-pill');
     replyPill.innerHTML = `
-        <span class="reply-username">${username}</span>
-        <span class="reply-content">${content}</span>
+        <div>
+            <span class="reply-username">${username}</span>
+            <span class="reply-content">${content}</span>
+        </div>
         <span class="reply-id">${postId}</span>
     `;
     const messageContainer = document.getElementById('messageContainer');
