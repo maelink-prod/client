@@ -11,9 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     messageInput.style.maxHeight = '150px';
 
     function adjustInputHeight() {
-        messageInput.style.height = 'auto';
-        messageInput.style.height = Math.min(messageInput.scrollHeight, 150) + 'px';
-        sendButton.style.height = messageInput.style.height;
+      messageInput.style.height = 'auto';
+      messageInput.style.overflow = 'scroll';
+      messageInput.style.height = Math.min(messageInput.scrollHeight, 150) + 'px';
+      messageInput.style.overflow = 'hidden';
+      sendButton.style.height = messageInput.style.height;
     }
 
     // Handle input events
