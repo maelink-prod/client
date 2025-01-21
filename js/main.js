@@ -10,7 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
         login(storedUsername, storedPassword);
     }
 });
-
+document.addEventListener('focus', () => {
+    document.title = "maelink";                        
+});
+document.addEventListener("visibilitychange", () => {
+	if (document.visibilityState == "visible") {
+		document.title = "maelink";
+	}
+});
 function login(username, password) {
     fetch(`${httpUrl}/login`, {
         method: 'POST',
@@ -177,7 +184,9 @@ function createPostElement(post) {
             replyContainer.appendChild(replyPill);
         });
     }
-
+    if (document.visibilityState === "hidden") {
+        document.title = "(!) maelink";
+    }
     return postElement;
 }
 
