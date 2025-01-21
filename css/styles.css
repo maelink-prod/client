@@ -309,6 +309,7 @@ small {
     margin-right: auto;
     margin-bottom: auto;
     width: 100%;
+    justify-content: space-between;
 }
 
 .reply-username {
