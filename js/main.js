@@ -1,5 +1,19 @@
 const wsUrl = 'wss://maelink-ws.derpygamer2142.com';
 const httpUrl = 'https://maelink-http.derpygamer2142.com';
+const md = markdownit({
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(str, { language: lang }).value;
+            } catch (__) {}
+        }
+    
+        return ''; // use external default escaping
+    },
+    breaks: true,
+    linkify: true,
+    typographer: true,
+})
 let ws;
 let postsLoaded = 0;
 var animationComplete = false;
@@ -148,7 +162,7 @@ function createPostElement(post) {
     console.log(post)
     const postData = JSON.parse(post.e);
     const timestamp = new Date(postData.t);
-    const formattedText = post.p.replace(/\n/g, '<br>');
+    const formattedText = md.render(post.p);
     const postId = post._id;
     const postReply = post.reply_to;
 
