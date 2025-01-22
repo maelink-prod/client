@@ -58,6 +58,7 @@ body {
 .post-text {
     margin-top: 10px;
     color: #ffffff;
+    word-break: break-word;
 }
 
 .post-text p, .reply-pill p {
