@@ -5,9 +5,9 @@ const md = markdownit({
         if (lang && hljs.getLanguage(lang)) {
             try {
                 return hljs.highlight(str, { language: lang }).value;
-            } catch (__) {}
+            } catch (__) { }
         }
-    
+
         return ''; // use external default escaping
     },
     breaks: true,
@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 document.addEventListener('focus', () => {
-    document.title = "maelink";                        
+    document.title = "maelink";
 });
 document.addEventListener("visibilitychange", () => {
-	if (document.visibilityState == "visible") {
-		document.title = "maelink";
-	}
+    if (document.visibilityState == "visible") {
+        document.title = "maelink";
+    }
 });
 function login(username, password) {
     fetch(`${httpUrl}/login`, {
@@ -137,11 +137,12 @@ function connectWebSocket() {
 }
 
 function fetchIndividualPost(postReply, callback) {
-        const tempWs = new WebSocket(wsUrl);
+    const tempWs = new WebSocket(wsUrl);
+    tempWs.onopen = () => {
         tempWs.send(JSON.stringify({ cmd: 'fetchInd', id: postReply }));
+    };
 
-
-   tempWs.onmessage = (event) => {
+    tempWs.onmessage = (event) => {
         const response = JSON.parse(event.data);
         if (response.cmd === 'fetchInd') {
             callback(response.post[0]);
