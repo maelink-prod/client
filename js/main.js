@@ -137,22 +137,13 @@ function connectWebSocket() {
 }
 
 function fetchIndividualPost(postReply, callback) {
-    const tempWs = new WebSocket(wsUrl);
-    tempWs.onopen = () => {
-        tempWs.send(JSON.stringify({ cmd: 'fetchInd', id: postReply }));
-    };
+        ws.send(JSON.stringify({ cmd: 'fetchInd', id: postReply }));
 
-    tempWs.onmessage = (event) => {
+   ws.onmessage = (event) => {
         const response = JSON.parse(event.data);
         if (response.cmd === 'fetchInd') {
             callback(response.post[0]);
-            tempWs.close();
         }
-    };
-
-    tempWs.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        tempWs.close();
     };
 }
 
