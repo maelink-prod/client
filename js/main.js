@@ -103,11 +103,19 @@ function connectWebSocket() {
     };
 
     ws.onclose = () => {
+        document.title = "(?) maelink";
         console.log('Disconnected from the WebSocket server');
+        if (prompt("WebSocket connection closed, refresh to reconnect?")) {
+            window.location.reload();
+        }
     };
 
     ws.onerror = (error) => {
+        document.title = "(??) maelink";
         console.error('WebSocket error:', error);
+        if (prompt("WebSocket connection encountered an error, refresh to reconnect?")) {
+            window.location.reload();
+        }
     };
 
     document.getElementById('sendButton').addEventListener('click', () => {
