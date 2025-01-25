@@ -1,3 +1,25 @@
+::-webkit-scrollbar {
+    width: .7rem;
+    height: .7rem;
+}
+
+::-webkit-scrollbar-track {
+	background: #1b1b1b;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #474747;
+	border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:active {
+	cursor: grabbing;
+}
+
 body {
     font-family: "Kanit", sans-serif;
     background-color: #1d1d1d;
@@ -30,6 +52,7 @@ body {
 
 .post-content {
     flex: 2;
+    width: 100%;
 }
 
 .post-header {
@@ -348,5 +371,40 @@ small {
     }
     to {
         opacity: 1;
+    }
+}
+
+pre {
+    overflow-x: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .settings-container {
+        height: fit-content !important;
+        width: calc(100% - 1rem) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        flex-direction: column !important;
+    }
+    .settings-nav-item {
+        display: inline;
+    }
+    .settings-nav {
+        width: calc(100% - 1rem) !important;
+        height: fit-content !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0.5rem 0.3rem !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .settings-nav-item.active {
+        color: #ffffff;
+        border-bottom: 4px solid #ff6c6c !important;
+    }
+    .settings-nav-item {
+        padding: 5px 20px !important;
+        cursor: pointer;
     }
 }

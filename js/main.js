@@ -124,9 +124,24 @@ function connectWebSocket() {
             sendMessage();
         }
     });
-    document.getElementById('loadMoreButton').addEventListener('click', () => {
-        ws.send(JSON.stringify({ cmd: 'fetch', offset: postsLoaded }));
-    });
+    
+    const loadMoreButton = document.getElementById('loadMoreButton');
+
+    const handleScroll = () => {
+        const rect = loadMoreButton.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            let timer;
+            if (!timer) {
+                timer = setTimeout(() => {
+                    ws.send(JSON.stringify({ cmd: 'fetch', offset: postsLoaded }));
+                    timer = null;
+                }, 100);
+            }
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     document.getElementById('messageInput').addEventListener('keydown', function (e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
