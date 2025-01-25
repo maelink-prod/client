@@ -4,20 +4,20 @@
 }
 
 ::-webkit-scrollbar-track {
-	background: #1b1b1b;
+    background: #1b1b1b;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #474747;
-	border-radius: 0.5rem;
+    background: #474747;
+    border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	cursor: grab;
+    cursor: grab;
 }
 
 ::-webkit-scrollbar-thumb:active {
-	cursor: grabbing;
+    cursor: grabbing;
 }
 
 body {
@@ -25,7 +25,8 @@ body {
     background-color: #1d1d1d;
     margin: 0;
     padding: 20px;
-    padding-top: 80px; /* Add padding to the top to account for the fixed top bar */
+    padding-top: 80px;
+    /* Add padding to the top to account for the fixed top bar */
 }
 
 .post {
@@ -33,7 +34,8 @@ body {
     border: 2.5px solid #616161;
     padding: 20px;
     border-radius: 20px;
-    margin: 10px 0; /* Add margin to separate posts */
+    margin: 10px 0;
+    /* Add margin to separate posts */
 }
 
 .post-inner {
@@ -57,7 +59,8 @@ body {
 
 .post-header {
     display: flex;
-    flex-direction: column; /* Arrange username and timestamp in a column */
+    flex-direction: column;
+    /* Arrange username and timestamp in a column */
 }
 
 .post-username {
@@ -71,7 +74,8 @@ body {
 .post-timestamp {
     color: #999;
     font-size: 0.9em;
-    margin-top: -5px; /* Add space between username and timestamp */
+    margin-top: -5px;
+    /* Add space between username and timestamp */
 }
 
 .id {
@@ -84,14 +88,16 @@ body {
     word-break: break-word;
 }
 
-.post-text p, .reply-pill p {
+.post-text p,
+.reply-pill p {
     margin: 0;
 }
 
 #input {
     display: flex;
     margin-bottom: 20px;
-    margin-top: 20px; /* Add margin to the top to create space between the top bar and the input */
+    margin-top: 20px;
+    /* Add margin to the top to create space between the top bar and the input */
 }
 
 #status {
@@ -105,7 +111,8 @@ body {
 
 #topbar {
     display: flex;
-    align-items: center; /* Center child elements vertically */
+    align-items: center;
+    /* Center child elements vertically */
     justify-content: space-between;
     background-color: #2b2b2b;
     border-bottom: 2.5px solid #4e4e4e;
@@ -133,8 +140,10 @@ body {
 #messageContainer {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Ensure the container takes full width */
-    margin-bottom: 10px; /* Add margin to separate from other elements */
+    width: 100%;
+    /* Ensure the container takes full width */
+    margin-bottom: 10px;
+    /* Add margin to separate from other elements */
 }
 
 #currentUsername {
@@ -150,14 +159,16 @@ body {
     background: none;
 }
 
-#login, #register {
+#login,
+#register {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
 }
 
-#login input, #register input {
+#login input,
+#register input {
     width: 100%;
     max-width: 300px;
     padding: 10px;
@@ -169,7 +180,8 @@ body {
     font-family: "Kanit", sans-serif;
 }
 
-#login button, #register button {
+#login button,
+#register button {
     width: 100%;
     max-width: 300px;
     padding: 10px;
@@ -182,7 +194,8 @@ body {
     cursor: pointer;
 }
 
-#login button:hover, #register button:hover {
+#login button:hover,
+#register button:hover {
     background-color: #ff9f9f;
 }
 
@@ -197,11 +210,15 @@ body {
     line-height: 1.4;
     resize: none;
     overflow-y: hidden;
-    height: 36px; /* Set a fixed height */
+    height: 36px;
+    /* Set a fixed height */
     min-height: 36px;
-    max-height: 36px; /* Match the min-height */
-    vertical-align: top; /* Align with button */
-    box-sizing: border-box; /* Include padding in height calculation */
+    max-height: 36px;
+    /* Match the min-height */
+    vertical-align: top;
+    /* Align with button */
+    box-sizing: border-box;
+    /* Include padding in height calculation */
 }
 
 #sendButton {
@@ -213,14 +230,18 @@ body {
     color: #ffffff;
     cursor: pointer;
     transition: background-color 0.2s;
-    height: 36px; /* Match the input height */
+    height: 36px;
+    /* Match the input height */
     min-height: 36px;
-    vertical-align: top; /* Align with input */
-    box-sizing: border-box; /* Include padding in height calculation */
+    vertical-align: top;
+    /* Align with input */
+    box-sizing: border-box;
+    /* Include padding in height calculation */
 }
 
 #welcome-message {
-    font-size: 1.5em; /* Adjust the size as needed */
+    font-size: 1.5em;
+    /* Adjust the size as needed */
     color: #ff5656;
     font-style: italic;
     text-align: left;
@@ -229,7 +250,8 @@ body {
 }
 
 #welcome-message-2 {
-    font-size: 0.5m; /* Adjust the size as needed */
+    font-size: 0.5m;
+    /* Adjust the size as needed */
     color: #ff5656;
     font-style: italic;
     font-weight: lighter;
@@ -258,9 +280,12 @@ body {
 small {
     color: #ccc;
     font-size: 0.8em;
-    margin: 0; /* Remove all margins */
-    padding: 0; /* Remove all padding */
-    margin-bottom: -5px; /* Add a small margin to separate from #currentUsername */
+    margin: 0;
+    /* Remove all margins */
+    padding: 0;
+    /* Remove all padding */
+    margin-bottom: -5px;
+    /* Add a small margin to separate from #currentUsername */
 }
 
 #userInfo {
@@ -296,6 +321,7 @@ small {
         opacity: 0;
         transform: translateY(1000px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0px);
@@ -306,6 +332,7 @@ small {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -320,6 +347,7 @@ small {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -328,16 +356,17 @@ small {
 .reply-pill {
     display: flex;
     flex-direction: row;
-    background-color: darkred;
-    border: 1px solid red;
+    background-color: #474747;
+    border: 1px solid #7f7f7f;
     border-radius: 15px;
     padding: 5px 10px;
     color: white;
     font-style: italic;
     margin-right: auto;
-    margin-bottom: auto;
+    margin-bottom: 0.5rem;
     width: 100%;
     justify-content: space-between;
+    gap: 0.3rem;
 }
 
 .reply-username {
@@ -350,7 +379,8 @@ small {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 10px; /* Add margin to separate from username */
+    margin-bottom: 10px;
+    /* Add margin to separate from username */
 }
 
 .reply-content {
@@ -369,6 +399,7 @@ small {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -386,9 +417,11 @@ pre {
         margin-right: auto !important;
         flex-direction: column !important;
     }
+
     .settings-nav-item {
         display: inline;
     }
+
     .settings-nav {
         width: calc(100% - 1rem) !important;
         height: fit-content !important;
@@ -403,8 +436,57 @@ pre {
         color: #ffffff;
         border-bottom: 4px solid #ff6c6c !important;
     }
+
     .settings-nav-item {
         padding: 5px 20px !important;
         cursor: pointer;
     }
+}
+
+.loader {
+    width: 20px;
+    height: 5px;
+    display: block;
+    margin: auto;
+    position: relative;
+    border-radius: 4px;
+    color: #FFF;
+    opacity: .5;
+    background: currentColor;
+    box-sizing: border-box;
+    animation: animloader 0.6s 0.3s ease infinite alternate;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 20px;
+    height: 5px;
+    background: currentColor;
+    position: absolute;
+    border-radius: 4px;
+    top: 0;
+    right: 110%;
+    animation: animloader 0.6s ease infinite alternate;
+}
+
+.loader::after {
+    left: 110%;
+    right: auto;
+    animation-delay: 0.6s;
+}
+
+@keyframes animloader {
+    0% {
+        width: 20px;
+    }
+
+    100% {
+        width: 48px;
+    }
+}
+
+.dropdown-content {
+    top: 40px;
 }
